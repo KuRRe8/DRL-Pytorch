@@ -6,7 +6,7 @@ class QLearningAgent():
         self.lr = lr
         self.gamma = gamma
         self.epsilon = exp_noise
-        self.Q = np.zeros((s_dim, a_dim))
+        self.Q = np.zeros((s_dim, a_dim)) # row for state and col for action
 
     def select_action(self,s, deterministic):
         if deterministic:
@@ -19,11 +19,11 @@ class QLearningAgent():
             else:
                 return np.argmax(self.Q[s, :])
 
-    def train(self, s, a, r, s_next, dw):
+    def train(self, s, a, r, s_next, dw): # state, action, award, statenext, 
         '''Update Q table'''
-        Q_sa = self.Q[s, a]
-        target_Q = r + (1 - dw) * self.gamma * np.max(self.Q[s_next, :])
-        self.Q[s, a] += self.lr * (target_Q - Q_sa)
+        Q_sa = self.Q[s, a] # for a specific Q value, initially 0
+        target_Q = r + (1 - dw) * self.gamma * np.max(self.Q[s_next, :]) # reward + done*gamma*max Q of next state
+        self.Q[s, a] += self.lr * (target_Q - Q_sa) # using lostrate to smoothly change
 
     def save(self):
         '''save Q table'''

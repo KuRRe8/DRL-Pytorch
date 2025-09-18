@@ -51,7 +51,7 @@ def main():
         while not done:
             steps += 1
             a = agent.select_action(s, deterministic=False)
-            s_next, r, dw, tr, info = env.step(a)
+            s_next, r, dw, tr, info = env.step(a) # 环境输入action，给出下个state 当前reward 是否done 是否因为超时截断
             agent.train(s, a, r, s_next, dw)
 
             done = (dw or tr)
