@@ -1,0 +1,47 @@
+[project]
+name = "drl-pytorch"
+version = "0.1.0"
+description = "Deep Reinforcement Learning"
+authors = [
+    { name = "laptop-hp", email = "yangkaiwen0886@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "torch",
+    "torchvision",
+    "torchaudio",
+    "torchtext",
+    "torchdata",
+    "torchmetrics",
+    "transformers>=4.52.4",
+    "datasets>=3.6.0",
+    "evaluate>=0.4.3",
+    "tokenizers>=0.21.1",
+    "accelerate>=1.7.0",
+    "optimum>=1.25.3",
+    "peft>=0.15.2",
+    "trl>=0.18.1",
+    "gradio>=5.32.0",
+    "hf-xet>=1.1.2",
+    "numpy>=2.2.6",
+    "optuna>=4.3.0",
+    "ray[tune]>=2.46.0",
+    "gymnasium==0.29.1"
+]
+
+[project.optional-dependencies]
+classic-control = ["gymnasium[classic-control]"]
+box2d = ["gymnasium[box2d]"]
+
+[[tool.uv.index]]
+name = "pytorch-cu124"
+url = "https://download.pytorch.org/whl/cu124"
+explicit = true
+
+[tool.uv.sources]
+torch = [
+  { index = "pytorch-cu124", marker = "sys_platform == 'linux' or sys_platform == 'win32'" },
+]
+torchvision = [
+  { index = "pytorch-cu124", marker = "sys_platform == 'linux' or sys_platform == 'win32'" },
+]

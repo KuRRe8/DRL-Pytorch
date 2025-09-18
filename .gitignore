@@ -1,3 +1,5 @@
 # Ignore all 'model' and '__pycache__' folders in every first-level directory
 /*/model/
 /*/__pycache__/
+
+*.egg-info
